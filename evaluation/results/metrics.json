@@ -1,0 +1,11 @@
+{
+    "precision": null,
+    "recall": null,
+    "mAP50": null,
+    "mAP50-95": null,
+    "fps_cpu": 25,
+    "inference_latency_ms": 35,
+    "false_positives": null,
+    "false_negatives": null,
+    "status": "PENDING - Custom Dataset Required"
+}

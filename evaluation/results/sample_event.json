@@ -1,0 +1,16 @@
+{
+    "event_id": "EVT-000123",
+    "module": "module_04_energy",
+    "event_type": "POTENTIAL_ENERGY_WASTAGE",
+    "camera_id": "CAM-001",
+    "track_id": null,
+    "timestamp": "2026-10-03T05:23:57.969539+00:00",
+    "confidence": 0.88,
+    "severity": "MEDIUM",
+    "status": "PENDING",
+    "rule": {
+        "name": "unoccupied_with_device_on",
+        "device_type": "tv",
+        "persistence_frames": 300
+    }
+}

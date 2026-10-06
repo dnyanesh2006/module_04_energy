@@ -1,0 +1,62 @@
+[
+    {
+        "module": "module_04_energy",
+        "camera_id": "CAM-TEST",
+        "frame_id": 295,
+        "timestamp": "2026-10-06T05:22:30.045921+00:00",
+        "track_id": null,
+        "class_name": "person",
+        "confidence": 0.6342419981956482,
+        "bbox": {
+            "x1": 0.0,
+            "y1": 578.9146728515625,
+            "x2": 409.90301513671875,
+            "y2": 1548.0118408203125
+        }
+    },
+    {
+        "module": "module_04_energy",
+        "camera_id": "CAM-TEST",
+        "frame_id": 300,
+        "timestamp": "2026-10-06T05:22:30.233177+00:00",
+        "track_id": null,
+        "class_name": "person",
+        "confidence": 0.6660974621772766,
+        "bbox": {
+            "x1": 0.0,
+            "y1": 1197.505126953125,
+            "x2": 289.2192077636719,
+            "y2": 1915.199462890625
+        }
+    },
+    {
+        "module": "module_04_energy",
+        "camera_id": "CAM-TEST",
+        "frame_id": 340,
+        "timestamp": "2026-10-06T05:22:31.861094+00:00",
+        "track_id": null,
+        "class_name": "person",
+        "confidence": 0.5709514617919922,
+        "bbox": {
+            "x1": 153.1562042236328,
+            "y1": 1002.22998046875,
+            "x2": 715.96728515625,
+            "y2": 1920.0
+        }
+    },
+    {
+        "module": "module_04_energy",
+        "camera_id": "CAM-TEST",
+        "frame_id": 925,
+        "timestamp": "2026-10-06T05:22:57.312193+00:00",
+        "track_id": null,
+        "class_name": "person",
+        "confidence": 0.5457485318183899,
+        "bbox": {
+            "x1": 0.0,
+            "y1": 1112.711181640625,
+            "x2": 177.09352111816406,
+            "y2": 1917.1329345703125
+        }
+    }
+]

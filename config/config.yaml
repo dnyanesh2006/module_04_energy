@@ -1,0 +1,36 @@
+module:
+  id: module_04_energy
+  name: Electricity & Energy Wastage Detection
+  version: 1.0.0
+
+model:
+  path: models/checkpoints/energy_detector_combined/weights/best.pt
+  input_size: 640
+  confidence_threshold: 0.50
+  iou_threshold: 0.45
+
+tracking:
+  enabled: true
+  tracker: bytetrack.yaml
+  max_age: 30
+
+event:
+  # The room must be unoccupied for this long before checking wastage
+  occupancy_cooldown_seconds: 2
+  # The conditions (e.g. lights ON + empty) must persist for this long
+  wastage_persistence_seconds: 3
+  # Prevent duplicate events for the same ongoing situation
+  event_cooldown_seconds: 5
+
+schedules:
+  # Examples for future implementation (e.g. after hours)
+  working_hours_start: "08:00"
+  working_hours_end: "18:00"
+
+evidence:
+  save_frame: true
+  save_clip: false
+  evidence_dir: "evaluation/results/evidence"
+
+output:
+  format: json

@@ -1,0 +1,33 @@
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# IDE
+.vscode/
+
+# Runtime/generated files
+uploads/*
+runs/
+
+# Large/raw public datasets
+datasets/public/
+datasets/combined_v2/
+
+# Generated dataset split
+datasets/custom_cctv_split/
+
+# Temporary files
+*.tmp
+*.log
+
+# Environment/secrets
+.env
+.venv/
+venv/
+
+# OS
+Thumbs.db
+.DS_Store
+datasets/custom_cctv/*.zip
+datasets/test_video.mp4

@@ -1,0 +1,17 @@
+[
+    {
+        "module": "module_04_energy",
+        "camera_id": "CAM-TEST",
+        "frame_id": 145,
+        "timestamp": "2026-10-06T05:21:35.261793+00:00",
+        "track_id": null,
+        "class_name": "light_off",
+        "confidence": 0.5211610794067383,
+        "bbox": {
+            "x1": 260.344482421875,
+            "y1": 433.859619140625,
+            "x2": 413.6881103515625,
+            "y2": 570.240966796875
+        }
+    }
+]

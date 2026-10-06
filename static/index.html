@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA - Energy Wastage Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">NEXORA</div>
+            <h1>Electricity & Energy Wastage Detection</h1>
+            <p class="subtitle">Upload CCTV footage to analyze occupancy, visible lighting conditions, and potential energy-wastage events.</p>
+        </header>
+
+        <!-- Upload Section -->
+        <main class="content">
+            <section id="upload-section" class="card upload-card">
+                <h2>Upload CCTV Video</h2>
+                <div class="upload-zone" id="upload-zone">
+                    <input type="file" id="video-upload" accept="video/mp4" hidden>
+                    <button class="btn btn-secondary" onclick="document.getElementById('video-upload').click()">Choose MP4</button>
+                    <p class="upload-text">Maximum file size: 100 MB</p>
+                    
+                    <div id="file-info" class="file-info hidden">
+                        <p><strong>File:</strong> <span id="file-name"></span></p>
+                        <p><strong>Size:</strong> <span id="file-size"></span></p>
+                    </div>
+                </div>
+                
+                <div id="error-message" class="alert alert-error hidden"></div>
+                <div id="loading-indicator" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing Video... Please wait.</p>
+                </div>
+                
+                <button id="analyze-btn" class="btn btn-primary" disabled>Analyze Video</button>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-container hidden">
+                <!-- Video Summary -->
+                <div class="card summary-card">
+                    <h3>Video Analysis</h3>
+                    <div class="grid-2">
+                        <div>
+                            <p class="label">Filename:</p>
+                            <p class="value" id="res-filename">-</p>
+                        </div>
+                        <div>
+                            <p class="label">Processing time:</p>
+                            <p class="value" id="res-processing-time">-</p>
+                        </div>
+                        <div>
+                            <p class="label">Analysis status:</p>
+                            <p class="value status-success">Completed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <!-- AI Detection Summary -->
+                    <div class="card detection-card">
+                        <h3>AI Detection Summary</h3>
+                        <div class="detection-item">
+                            <span class="label">Person</span>
+                            <div class="detection-stats">
+                                <span id="res-person-detected" class="badge"></span>
+                                <span class="count">Count: <span id="res-person-count">0</span></span>
+                            </div>
+                        </div>
+                        <div class="detection-item">
+                            <span class="label">Light ON</span>
+                            <div class="detection-stats">
+                                <span id="res-lighton-detected" class="badge"></span>
+                                <span class="count">Count: <span id="res-lighton-count">0</span></span>
+                            </div>
+                        </div>
+                        <div class="detection-item">
+                            <span class="label">Light OFF</span>
+                            <div class="detection-stats">
+                                <span id="res-lightoff-detected" class="badge"></span>
+                                <span class="count">Count: <span id="res-lightoff-count">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tracking / Occupancy -->
+                    <div class="card occupancy-card">
+                        <h3>Occupancy Analysis</h3>
+                        <p class="label">Current status:</p>
+                        <p class="value large" id="res-occupancy-status">Unknown</p>
+                        <p class="label mt-2">Person tracks found:</p>
+                        <p class="value" id="res-person-tracks">0</p>
+                    </div>
+                </div>
+
+                <!-- Final Result & Energy Wastage Logic -->
+                <div class="card event-card" id="event-result-card">
+                    <h2 id="res-event-title" class="event-title">POTENTIAL ENERGY WASTAGE DETECTED</h2>
+                    <div id="event-details" class="event-details">
+                        <div class="logic-box">
+                            <h4>How M04 decides:</h4>
+                            <p><strong>Potential Energy Wastage:</strong> Person occupancy = 0 + Light visibly ON + Condition persists according to configured temporal rule.</p>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <span class="label">Event Type:</span>
+                            <span class="value" id="res-event-type">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Reason:</span>
+                            <span class="value" id="res-event-reason">Light appears ON while the area appears unoccupied for the configured duration.</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Timestamp:</span>
+                            <span class="value" id="res-event-timestamp">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Confidence:</span>
+                            <span class="value" id="res-event-confidence">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Rule:</span>
+                            <span class="value" id="res-event-rule">-</span>
+                        </div>
+                    </div>
+                    <div id="no-event-details" class="hidden logic-box">
+                        <p>No potential energy-wastage event was generated.</p>
+                        <p class="label">Possible reason:</p>
+                        <p>The required temporal condition was not satisfied (e.g. area was occupied, or light was not left on long enough).</p>
+                    </div>
+                </div>
+
+                <!-- Incident & Human Review -->
+                <div class="grid-2">
+                    <div class="card incident-card">
+                        <h3>Incident</h3>
+                        <div id="incident-content">
+                            <!-- Filled dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="card review-card">
+                        <h3>Human Review</h3>
+                        <div id="review-content">
+                            <!-- Filled dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evidence -->
+                <div class="card evidence-card">
+                    <h3>Evidence</h3>
+                    <div id="evidence-content" class="evidence-container">
+                        <!-- Video / Image injected here -->
+                    </div>
+                </div>
+
+                <!-- Raw AI Output -->
+                <div class="card raw-card">
+                    <div class="raw-header" onclick="toggleRaw()">
+                        <h3>View Technical AI Output</h3>
+                        <span id="raw-icon">▼</span>
+                    </div>
+                    <pre id="raw-json" class="hidden"></pre>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+    "module": "module_04_energy",
+    "camera_id": "CAM-001",
+    "frame_id": 1250,
+    "timestamp": "2026-10-03T05:23:57.968989+00:00",
+    "track_id": 17,
+    "class_name": "person",
+    "confidence": 0.91,
+    "bbox": {
+        "x1": 120,
+        "y1": 80,
+        "x2": 300,
+        "y2": 420
+    }
+}

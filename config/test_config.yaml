@@ -1,0 +1,26 @@
+event:
+  event_cooldown_seconds: 5
+  occupancy_cooldown_seconds: 2
+  wastage_persistence_seconds: 3
+evidence:
+  evidence_dir: evaluation/results/evidence
+  save_clip: false
+  save_frame: true
+model:
+  confidence_threshold: 0.5
+  input_size: 640
+  iou_threshold: 0.45
+  path: runs/detect/runs/detect/energy_detector_50ep/weights/best.pt
+module:
+  id: module_04_energy
+  name: Electricity & Energy Wastage Detection
+  version: 1.0.0
+output:
+  format: json
+schedules:
+  working_hours_end: '18:00'
+  working_hours_start: 08:00
+tracking:
+  enabled: true
+  max_age: 30
+  tracker: bytetrack.yaml

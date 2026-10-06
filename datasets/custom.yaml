@@ -1,0 +1,8 @@
+path: d:\ELECTRICITY & ENERGY WASTAGE DETECTION\module_04_energy\datasets\custom_cctv_split
+train: train/images
+val: val/images
+test: test/images
+names:
+  0: person
+  1: light_on
+  2: light_off
